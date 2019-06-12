@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{230B2A34-B088-4EA1-BB06-B6849EA462AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnyEquation</RootNamespace>
+    <AssemblyName>AnyEquation</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\AddDoubleConverter.cs" />
+    <Compile Include="Common\AntMessageBase.cs" />
+    <Compile Include="Common\AntMessenger.cs" />
+    <Compile Include="Common\AwaitableContentPage.cs" />
+    <Compile Include="Common\BindablePicker .cs" />
+    <Compile Include="Common\BusyOverlay.xaml.cs">
+      <DependentUpon>BusyOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\CarouselIndicators.cs" />
+    <Compile Include="Common\DoubleExtensions.cs" />
+    <Compile Include="Common\DoubleRoundingConverter.cs" />
+    <Compile Include="Common\DoubleToStringConverter.cs" />
+    <Compile Include="Common\FractionToIntRangeConverter.cs" />
+    <Compile Include="Common\HyperLinkLabel.cs" />
+    <Compile Include="Common\ILogger.cs" />
+    <Compile Include="Common\ImageResourceExtension.cs" />
+    <Compile Include="Common\ImprovedEntry.cs" />
+    <Compile Include="Common\IPlatformInfo.cs" />
+    <Compile Include="Common\ISQLite.cs" />
+    <Compile Include="Common\ITextToSpeech.cs" />
+    <Compile Include="Common\LcButton.cs" />
+    <Compile Include="Common\Logger.cs" />
+    <Compile Include="Common\MultiplyDoubleConverter.cs" />
+    <Compile Include="Common\NotifyableContentView.cs" />
+    <Compile Include="Common\ObservableCollectionFast.cs" />
+    <Compile Include="Common\SuperscriptText.cs" />
+    <Compile Include="Common\UnspecifiedException.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Equations\Common\CsvFileReader.cs" />
+    <Compile Include="Equations\Database\TblConstant_Row.cs" />
+    <Compile Include="Equations\Database\TblsEquationLibrary.cs" />
+    <Compile Include="Equations\Database\TblUOM_Row.cs" />
+    <Compile Include="Equations\Model\EquationLibrary.cs" />
+    <Compile Include="Equations\Model\Calculations\UOMSet.cs" />
+    <Compile Include="Equations\Model\Functions\FnTrig.cs" />
+    <Compile Include="Equations\Model\Functions\FnOneArg.cs" />
+    <Compile Include="Equations\Model\Functions\FnLog.cs" />
+    <Compile Include="Equations\Model\Info\TestEquations.cs" />
+    <Compile Include="Equations\ViewModels\VmBrowseEquation2.cs" />
+    <Compile Include="Equations\ViewModels\VmChooseMultiUom.cs" />
+    <Compile Include="Equations\ViewModels\VmPreviewEquation.cs" />
+    <Compile Include="Equations\Views\NumericConverter.cs" />
+    <Compile Include="Equations\Views\SfChooseUomGridStyle.cs" />
+    <Compile Include="Equations\Views\SfGridStyle.cs" />
+    <Compile Include="Equations\Views\VwBrowseEquation2.xaml.cs">
+      <DependentUpon>VwBrowseEquation2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwChooseDefaultUomPage.xaml.cs">
+      <DependentUpon>VwChooseDefaultUomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwEquationsPage2.xaml.cs">
+      <DependentUpon>VwEquationsPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwLaunchPage.xaml.cs">
+      <DependentUpon>VwLaunchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwPreviewEquation.xaml.cs">
+      <DependentUpon>VwPreviewEquation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwSelectEqnCalcFromList.xaml.cs">
+      <DependentUpon>VwSelectEqnCalcFromList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwSelectStringFromList.xaml.cs">
+      <DependentUpon>VwSelectStringFromList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwSelectStringsFromGroupedList.xaml.cs">
+      <DependentUpon>VwSelectStringsFromGroupedList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwSelectStringsFromList.xaml.cs">
+      <DependentUpon>VwSelectStringsFromList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwSettings.xaml.cs">
+      <DependentUpon>VwSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwShowMathExpression.xaml.cs">
+      <DependentUpon>VwShowMathExpression.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Options\About\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Options\Css3Colors\Css3ColorsPage.xaml.cs">
+      <DependentUpon>Css3ColorsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Common\IEquationsUiService.cs" />
+    <Compile Include="Equations\Common\Logging.cs" />
+    <Compile Include="Equations\Common\Result.cs" />
+    <Compile Include="Equations\Common\SqLiteHelper.cs" />
+    <Compile Include="Equations\Database\SqLiteContentDatabase.cs" />
+    <Compile Include="Equations\Database\IEqFileHelper.cs" />
+    <Compile Include="Equations\EquationParser\ICheckModelName.cs" />
+    <Compile Include="Equations\EquationParser\JongError.cs" />
+    <Compile Include="Equations\EquationParser\JongErrWarn.cs" />
+    <Compile Include="Equations\EquationParser\JongFuncSpecific.cs" />
+    <Compile Include="Equations\EquationParser\JongFunction.cs" />
+    <Compile Include="Equations\EquationParser\JongFunctionAssign.cs" />
+    <Compile Include="Equations\EquationParser\JongFunctionGet.cs" />
+    <Compile Include="Equations\EquationParser\JongLocalVariable.cs" />
+    <Compile Include="Equations\EquationParser\JongLocalVariableGet.cs" />
+    <Compile Include="Equations\EquationParser\JongParser.cs" />
+    <Compile Include="Equations\EquationParser\JongValue.cs" />
+    <Compile Include="Equations\EquationParser\JongVariableAssign.cs" />
+    <Compile Include="Equations\EquationParser\JongVariableGet.cs" />
+    <Compile Include="Equations\Model\Calculations\AnonUOM.cs" />
+    <Compile Include="Equations\Model\Calculations\BadCalcQuantity.cs" />
+    <Compile Include="Equations\Model\Calculations\BadUOM.cs" />
+    <Compile Include="Equations\Model\Calculations\CalcQuantity.cs" />
+    <Compile Include="Equations\Database\ImportedRow.cs" />
+    <Compile Include="Equations\Database\Conflict.cs" />
+    <Compile Include="Equations\Model\Calculations\Constant.cs" />
+    <Compile Include="Equations\Model\ContentManager.cs" />
+    <Compile Include="Equations\Model\Calculations\Dimensions.cs" />
+    <Compile Include="Equations\Model\Calculations\DisplayQuantity.cs" />
+    <Compile Include="Equations\Model\Calculations\EqnCalc.cs" />
+    <Compile Include="Equations\Model\Functions\FnAdd.cs" />
+    <Compile Include="Equations\Model\Functions\FnEquals.cs" />
+    <Compile Include="Equations\Model\Functions\Function.cs" />
+    <Compile Include="Equations\Model\Calculations\FunctionCalc.cs" />
+    <Compile Include="Equations\Model\Functions\FnDivide.cs" />
+    <Compile Include="Equations\Model\Functions\FnMultiply.cs" />
+    <Compile Include="Equations\Model\Functions\FnPower.cs" />
+    <Compile Include="Equations\Model\Functions\FnSquareRoot.cs" />
+    <Compile Include="Equations\Model\Functions\FnSubtract.cs" />
+    <Compile Include="Equations\Model\Functions\FnUnaryMinus.cs" />
+    <Compile Include="Equations\Model\IContent.cs" />
+    <Compile Include="Equations\Model\Info\VarInfo.cs" />
+    <Compile Include="Equations\Model\Calculations\Literal.cs" />
+    <Compile Include="Equations\Model\Functions\NormalFunction.cs" />
+    <Compile Include="Equations\Database\TblParamTypes_Row.cs" />
+    <Compile Include="Equations\Model\Calculations\ParamType.cs" />
+    <Compile Include="Equations\Model\Calculations\Quantity.cs" />
+    <Compile Include="Equations\Model\Calculations\SingleResult.cs" />
+    <Compile Include="Equations\Model\Calculations\SingleValue.cs" />
+    <Compile Include="Equations\Model\Calculations\KnownUOM.cs" />
+    <Compile Include="Equations\Model\Calculations\UOM.cs" />
+    <Compile Include="Equations\Model\Calculations\AnyUOMSet.cs" />
+    <Compile Include="Equations\Model\Calculations\Variable.cs" />
+    <Compile Include="Equations\User Controls\EqDisplayObjects.cs" />
+    <Compile Include="Equations\User Controls\ucMathDisplay.xaml.cs">
+      <DependentUpon>ucMathDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\User Controls\ucNumericInput.xaml.cs">
+      <DependentUpon>ucNumericInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\ViewModels\VmAddEquation.cs" />
+    <Compile Include="Equations\ViewModels\VmCalculationTree.cs" />
+    <Compile Include="Equations\ViewModels\VmChooseParam.cs" />
+    <Compile Include="Equations\ViewModels\VmChooseUom.cs" />
+    <Compile Include="Equations\ViewModels\VmEquations.cs" />
+    <Compile Include="Equations\Views\EquationsUiService.cs" />
+    <Compile Include="Equations\Views\VwAddEquation.xaml.cs">
+      <DependentUpon>VwAddEquation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwAddEquationStep2.xaml.cs">
+      <DependentUpon>VwAddEquationStep2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwCalculationTree.xaml.cs">
+      <DependentUpon>VwCalculationTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equations\Views\VwChooseUomPage.xaml.cs">
+      <DependentUpon>VwChooseUomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documents\Graphics.pptx" />
+    <None Include="Documents\Xamarin Tests Info.xlsx" />
+    <EmbeddedResource Include="Equations\Databases\Equations - Geick__Equations.csv" />
+    <EmbeddedResource Include="Equations\Databases\Equations - Geick__Info.csv" />
+    <EmbeddedResource Include="Equations\Databases\Equations - LargeDummy__Equations.csv" />
+    <EmbeddedResource Include="Equations\Databases\Equations - LargeDummy__Info.csv" />
+    <EmbeddedResource Include="Equations\Databases\AnyEq_Equations1.csv" />
+    <EmbeddedResource Include="Equations\Databases\AnyEq_Info.csv" />
+    <EmbeddedResource Include="Equations\Databases\AnyEq_ParamTypes1.csv" />
+    <EmbeddedResource Include="Equations\Databases\AnyEq_Uom1.csv" />
+    <EmbeddedResource Include="Equations\Databases\AnyEq_Constants1.csv" />
+    <None Include="Equations\Documents\Class Diagrams\Calculations.cd" />
+    <None Include="Equations\Documents\Class Diagrams\Content Management and Import.cd" />
+    <None Include="GettingStarted.Xamarin" />
+    <None Include="packages.config" />
+    <None Include="Equations\Documents\Eqn Scratch.pptx" />
+    <None Include="Equations\Documents\EquationsApp - Info.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net, Version=1.5.166.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\sqlite-net-pcl.1.5.166-beta\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.8\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Data.Portable">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.33\Xamarin\lib\pcl\Syncfusion.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.Portable">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.33\Xamarin\lib\pcl\Syncfusion.GridCommon.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDataGrid.XForms">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.33\Xamarin\lib\pcl\Syncfusion.SfDataGrid.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericTextBox.XForms">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.33\Xamarin\lib\pcl\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfPicker.XForms">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.33\Xamarin\lib\pcl\Syncfusion.SfPicker.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.CarouselView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.270\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.270\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.270\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documents\_ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.FormsBook.Toolkit\Xamarin.FormsBook.Toolkit.csproj">
+      <Project>{58eeafff-d1bb-4375-aefc-8270f8415dce}</Project>
+      <Name>Xamarin.FormsBook.Toolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Common\BusyOverlay.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\User Controls\ucMathDisplay.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\User Controls\ucNumericInput.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwChooseUomPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwCalculationTree.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwAddEquation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwAddEquationStep2.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Options\About\About.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\Css3Colors\Css3ColorsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwEquationsPage2.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwSelectStringFromList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwSelectEqnCalcFromList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwChooseDefaultUomPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwSelectStringsFromList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwSelectStringsFromGroupedList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwShowMathExpression.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwLaunchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwSettings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EmbeddedImages\" />
+    <Folder Include="Equations\Model\ContentManagement\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwBrowseEquation2.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Equations\Views\VwPreviewEquation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+</Project>

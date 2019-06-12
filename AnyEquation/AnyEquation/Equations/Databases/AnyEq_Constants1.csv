@@ -1,0 +1,6 @@
+﻿Index,Status,Name,Popularity,ParamType,Description,UnitSet,Value
+1,1,_G,,gravitational constant,Gravitational Constant,SI,6.67E-11
+2,1,_g,,acceleration linear,Acceleration due to gravity,SI,9.807
+3,1,_R,,universal gas constant,Universal gas constant,SI,8.314
+4,1,_mEarth,,mass,Mass of the earth,SI,5.97E+24
+5,1,_rEarth,,length,Radius of the earth,SI,6.37E+06

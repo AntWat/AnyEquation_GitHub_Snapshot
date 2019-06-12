@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<common:AwaitableContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwSelectStringsFromGroupedList"
+             Title="Select strings"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Name="view"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <eqnvw:SelectStringsGroupConverter x:Key="groupConverter" />
+            <eqnvw:SfChooseUomGridStyle x:Key="sfChooseUomGridStyle" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Horizontal">
+            <common:LcButton x:Name="btnOK" Clicked="OK_Clicked" Text="OK" IsVisible="{Binding MultiSelect}"></common:LcButton>
+            <common:LcButton x:Name="btnCancel" Clicked="Cancel_Clicked" Text="Cancel"></common:LcButton>
+            <common:LcButton x:Name="btnShowSelected" Clicked="ShowSelected_Clicked" Text="Show Selected..." IsVisible="{Binding MultiSelect}"></common:LcButton>
+        </StackLayout>
+        <syncfusion:SfDataGrid x:Name="stringsGrid"
+                           AutoGenerateColumns="False"
+                           ColumnSizer="LastColumnFill"
+                           RowHeight="30"
+                           GridStyle="{StaticResource sfChooseUomGridStyle}"
+                           AllowSorting="True" AllowTriStateSorting="True"
+                           AutoExpandGroups="False"
+                           AllowGroupExpandCollapse="True"
+                           ItemsSource="{Binding GroupedStrings}"
+                           SelectionMode="Multiple"
+                           GridLoaded="StringsGrid_GridLoaded"
+                           GridTapped="StringsGrid_GridTapped"
+                           SelectionChanged = "StringsGrid_SelectionChanged"
+                           >
+            <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                <syncfusion:GridTextColumn HeaderText="Grp" MappingName="Group"
+                                       ColumnSizer = "Auto"/>
+                <syncfusion:GridTextColumn 
+                                       HeaderText="Item" 
+                                       MappingName="Item"
+                                       TextAlignment="Start" LineBreakMode="NoWrap"/>
+            </syncfusion:SfDataGrid.Columns>
+            <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                <syncfusion:GroupColumnDescription x:Name="stringsGridGroupColumnDescription"
+                                               ColumnName="Group"
+                                               Converter="{StaticResource groupConverter}"/>
+            </syncfusion:SfDataGrid.GroupColumnDescriptions>
+        </syncfusion:SfDataGrid>
+    </StackLayout>
+
+</common:AwaitableContentPage>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<common:AwaitableContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwPreviewEquation"
+             Title="Equations"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Name="Equations"
+             >
+    <AbsoluteLayout>
+        <!--Allows us to implement a busy overlay-->
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <eqnvw:SfGridStyle x:Key="sfGridStyle" />
+                <eqnvw:NumericConverter x:Key="numericConverter" />
+                <eqnvw:PreviewGridcolorConverter x:Key="previewGridcolorConverter" />
+
+                <common:MultiplyDoubleConverter x:Key="multiplyConverter" />
+                <toolkit:BooleanNegationConverter x:Key="booleanNegationConverter" />
+
+            </ResourceDictionary>
+        </ContentPage.Resources>
+
+        <Grid VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--+++++++++++++++ Description ++++++++ -->
+            <Grid Grid.Row="0" VerticalOptions="Center" >
+                <Label Text="{Binding CurrentEqCalcDescription}" ></Label>
+            </Grid>
+
+            <!--+++++++++++++++ Equation ++++++++ -->
+            <eqnuc:ucMathDisplay Grid.Row="1" MathExpression="{Binding CurrentEquationCalc}" AllowHorizonatalScroll="True"
+                             VerticalOptions="Center"></eqnuc:ucMathDisplay>
+
+            <Label Grid.Row="2" Text="Example calculation:" ></Label>
+
+            <!--+++++++++++++++ ErrorMessage ++++++++ -->
+            <Label Grid.Row="3" Text="{Binding Path=InfoMessage}"
+                                    TextColor="{Binding ErrorMessageExists, ConverterParameter=0, Converter={StaticResource previewGridcolorConverter}}" 
+                                    BackgroundColor="{Binding ErrorMessageExists, ConverterParameter=1, Converter={StaticResource previewGridcolorConverter}}">
+
+            </Label>
+
+            <syncfusion:SfDataGrid Grid.Row="4" x:Name="previewGrid" 
+                        ItemsSource="{Binding EqPreviewVariables}"                                    
+                        GridStyle="{StaticResource sfGridStyle}"
+                        AutoGenerateColumns="False"
+                        AllowSorting="False"
+                        FrozenRowsCount ="1" FrozenColumnsCount="1"
+                        EditTapAction="OnTap"
+                        GridLoaded="PreviewGrid_GridLoaded"
+                        GridViewCreated="PreviewGrid_GridViewCreated"
+                        GridTapped="PreviewGrid_GridTapped"
+                                   >
+
+
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderText="Var" MappingName="DisplayName"
+                                        ColumnSizer = "Auto">
+                    </syncfusion:GridTextColumn>
+
+                    <syncfusion:GridNumericColumn HeaderText="Example" MappingName="Value"
+                                        AllowEditing="True"
+                                        Width="100">
+                    </syncfusion:GridNumericColumn>
+
+                    <syncfusion:GridTextColumn HeaderText="Units" MappingName="UomSymbol" ColumnSizer = "Auto">
+                    </syncfusion:GridTextColumn>
+
+                    <syncfusion:GridTextColumn HeaderText=" Description" MappingName="Description"
+                                        Width = "1000" HeaderTextAlignment="Start" TextAlignment="Start">
+                    </syncfusion:GridTextColumn>
+                    
+                    <syncfusion:GridTextColumn HeaderText="Param Type" MappingName="ParamInfo"
+                                        ColumnSizer = "Auto" HeaderTextAlignment="Start" TextAlignment="Start">
+                    </syncfusion:GridTextColumn>
+
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+            <StackLayout Grid.Row="5" Orientation="Horizontal">
+                <common:LcButton Text="OK" 
+                                     Clicked="Ok_Clicked" ></common:LcButton>
+                <common:LcButton Text="Cancel" Clicked="Cancel_Clicked"></common:LcButton>
+            </StackLayout>
+
+        </Grid>
+
+        <!-- Overlay -->
+        <common:BusyOverlay></common:BusyOverlay>
+
+    </AbsoluteLayout>
+</common:AwaitableContentPage>    

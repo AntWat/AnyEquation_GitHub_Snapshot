@@ -1,0 +1,77 @@
+Equation library in a database
+
+    public class EquationLibrary
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public IList<SectionNode> TopSectionNodes { get; } = new List<SectionNode>();
+
+		
+		
+		
+		
+    public class SectionNode
+        public SectionNode Parent { get; set; }
+        public IList<SectionNode> Children { get; set; } = new List<SectionNode>();
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public IList<EqnCalc> EqnCalcs { get; } = new List<EqnCalc>();
+		
+		
+Instead of EqnCalc:
+
+        private class EquationDetails
+            public string Description { get; set; }
+            public string EquationAsText { get; set; }
+            public IList<VarInfo> VariableInfos { get; set; }
+
+		public class VarInfo
+			public string Name { get; set; }
+			public string Description { get; set; }
+			public ParamType ParamType { get; set; }
+			
+			
+tblInfo
+	EquationLibraryName
+	EquationLibraryDescription
+
+tblSectionNode
+	SectionNodeID, ParentNodeID, Name, Description
+	
+tblEquation
+	EquationID, SectionNodeID, Name, Reference, Description, EquationAsText
+	
+tblVariable
+	VariableID, EquationID, Name, Description, ParamType
+	
+Read tables into the following classes:
+	EquationLibrariesDB
+	EquationLibraryInfo, SectionNodeInfo, EquationInfo, VarInfo
+	
+	EquationLibraryRow, SectionNodeRow, EquationRow, VarRow
+	(arranged in the required tree)
+
+	
+	tblEquationLibrary(EquationLibraryID)
+	
+	
+Q = U*A*DTLM
+
+U: Heat transfer coefficient: Heat transfer coefficient
+
+Q = U*A*DTLM
+
+B) Areas>Page B3>Annulus
+Equation b33: Area of an annulus
+A = (PI/4)*(D^2-d^2)
+A:Area:Area
+D:Outer Diameter:Length
+d:Inner Diamater:Length
+
+
+
+
+Status	SectionNode	Equation Name	Reference	Description	EquationAsText	Variable1	Variable2	Variable3	Variable4	Variable5	Variable6	Variable7	Variable8	Variable9	Variable10
+
+

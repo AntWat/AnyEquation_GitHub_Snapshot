@@ -1,0 +1,7 @@
+﻿Index,Status,Name,Symbol,Popularity,Description,BaseUom,Factor_A,Factor_B,Factor_C,Factor_D,Dim_Mass,Dim_Length,Dim_Time,Dim_ElectricCurrent,Dim_Temperature,Dim_QuantityOfSubstance,Dim_Luminosity,Dim_PlaneAngle,Dim_SolidAngle,Dim_Currency
+1,1,test_cm/s,test_cm/s,2,test_centimetre/second,m/s,0,0.01,1,0,0,1,-1,0,0,0,0,0,0,0
+2,1,tonne,tonne,2,Metric tonne,kg,0,1.00E+03,1,0,1,0,0,0,0,0,0,0,0,0
+3,1,Mega tonne,Mt,2,Mega tonne,kg,0,1.00E+09,1,0,1,0,0,0,0,0,0,0,0,0
+4,1,Tera tonne,Tt,2,Tera tonne,kg,0,1.00E+15,1,0,1,0,0,0,0,0,0,0,0,0
+5,1,Exa tonne,Et,2,Exa tonne,kg,0,1.00E+21,1,0,1,0,0,0,0,0,0,0,0,0
+6,1,Yotta tonne,Yt,2,Yotta tonne,kg,0,1.00E+27,1,0,1,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,3 @@
+﻿Index,Status,Name,Popularity,Group,Description,BaseUOM,ParsedUOM,Dim_Mass,Dim_Length,Dim_Time,Dim_ElectricCurrent,Dim_Temperature,Dim_QuantityOfSubstance,Dim_Luminosity,Dim_PlaneAngle,Dim_SolidAngle,Dim_Currency
+,1,gravitational constant,,,gravitational constant,m^3/(kg*s^2),,-1,3,-2,,,,,,,
+,1,universal gas constant,,,universal gas constant,J/(mol*K),,1,2,-2,0,-1,-1,0,0,0,0

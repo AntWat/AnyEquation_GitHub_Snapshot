@@ -1,0 +1,10 @@
+Status,SectionNode,EquationName,Reference,Description,EquationAsText,Variable1,Variable2,Variable3,Variable4,Variable5,Variable6,Variable7,Variable8,Variable9,Variable10
+,B) Areas>Page B1>Square,,b 1,,A = a^2,A:Area:Area,a:Side:Length,,,,,,,,
+,B) Areas>Page B1>Square,,b 2,,a = Sqrt(A),a:Side:Length,A:Area:Area,,,,,,,,
+,B) Areas>Page B1>Square,,b 3,,d = a*Sqrt(2),d:Diagonal:Length,a:Side:Length,,,,,,,,
+,B) Areas>Page B1>Rectangle,,b 4,,A=a*b,A:Area:Area,a:Side:Length,b:Side:Length,,,,,,,
+,B) Areas>Page B1>Rectangle,,b 5,,d=Sqrt(a^2+b^2),d:Diagonal:Length,a:Side:Length,b:Side:Length,,,,,,,
+,B) Areas>Page B1>Parallelogram,,b 6a,,A = a*h,A:Area:Area,a:Side:Length,h:Height:Length,,,,,,,
+,B) Areas>Page B1>Parallelogram,,b 6b,,A = a*b*sin(alpha),A:Area:Area,a:Side:Length,b:Side:Length,alpha:Small angle:plane angle,,,,,,
+,B) Areas>Page B1>Parallelogram,,b 7,,d1 = Sqrt( (a+ h*cotan(alpha) )^2 + h^2),d1:Long Diagonal:Length,a:Side:Length,h:Height:Length,alpha:Small angle:plane angle,,,,,,
+,B) Areas>Page B1>Parallelogram,,b 8,,d2 = Sqrt( (a- h*cotan(alpha) )^2 + h^2),d2:Short Diagonal:Length,a:Side:Length,h:Height:Length,alpha:Small angle:plane angle,,,,,,

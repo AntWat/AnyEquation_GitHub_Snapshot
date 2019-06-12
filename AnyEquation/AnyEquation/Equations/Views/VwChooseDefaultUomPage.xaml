@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<common:AwaitableContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwChooseDefaultUomPage"
+             Title="Choose Default Units of Measure"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Name="view"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <eqnvw:ChooseMultiUomGroupConverter x:Key="groupConverter" />
+            <eqnvw:SfChooseUomGridStyle x:Key="sfChooseUomGridStyle" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Horizontal">
+            <common:LcButton x:Name="btnOK" Clicked="OK_Clicked" Text="OK"></common:LcButton>
+            <common:LcButton x:Name="btnCancel" Clicked="Cancel_Clicked" Text="Cancel"></common:LcButton>
+            <common:LcButton x:Name="btnShowSelected" Clicked="ShowSelected_Clicked" Text="Show Selected..."></common:LcButton>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="10">
+            <Label Text="Default units:" VerticalOptions="Center"></Label>
+            <common:BindablePicker x:Name="pickUomSet" Title="Default Set" Style="{StaticResource PickerStyle}" VerticalOptions="Center"
+                                            ItemsSource="{Binding UomSetNames}"
+                                            SelectedIndex="{Binding UomSetSelectedIndex}"
+                                   >
+            </common:BindablePicker>
+        </StackLayout>
+        <Label Text="Choose any units that should be different to the set selected above:"></Label>
+        <syncfusion:SfDataGrid x:Name="unitsGrid"
+                           AutoGenerateColumns="False"
+                           ColumnSizer="LastColumnFill"
+                           RowHeight="30"
+                           GridStyle="{StaticResource sfChooseUomGridStyle}"
+                           AllowSorting="True" AllowTriStateSorting="True"
+                           AutoExpandGroups="False"
+                           AllowGroupExpandCollapse="True"
+                           ItemsSource="{Binding RowInfoCollection}"
+                           GridTapped="UnitsGrid_GridTapped"
+                           SelectionMode="Multiple"
+                           GridLoaded="UnitsGrid_GridLoaded"
+                           SelectionChanged = "UnitsGrid_SelectionChanged"
+                           >
+            <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                <syncfusion:GridTextColumn HeaderText="Grp" MappingName="Group"
+                                       ColumnSizer = "Auto"/>
+                <syncfusion:GridTextColumn HeaderText="Unit" MappingName="Unit"
+                                       ColumnSizer = "Auto"/>
+                <syncfusion:GridTextColumn 
+                                       HeaderText="Param Type" 
+                                       MappingName="Parameter"
+                                       TextAlignment="Start" LineBreakMode="NoWrap"/>
+            </syncfusion:SfDataGrid.Columns>
+            <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                <syncfusion:GroupColumnDescription x:Name="unitsGridGroupColumnDescription"
+                                               ColumnName="Group"
+                                               Converter="{StaticResource groupConverter}"/>
+            </syncfusion:SfDataGrid.GroupColumnDescriptions>
+        </syncfusion:SfDataGrid>
+    </StackLayout>
+
+</common:AwaitableContentPage>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<common:AwaitableContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwAddEquation"
+             Title="Add Equation"
+             Style="{DynamicResource AwaitableContentPageStyle}"
+             >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <eqnvw:SfGridStyle x:Key="sfGridStyle" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--+++++++++++++++ Equation ++++++++ -->
+
+    <Grid VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+               AbsoluteLayout.LayoutFlags="All" RowSpacing="0"
+               BackgroundColor="{DynamicResource mainBackgroundColor}"
+        Padding="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Padding="5,0,5,5">
+            <common:ImprovedEntry x:Name="txtEquation" Keyboard="Default" HorizontalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="Center"
+                           TextChanged="OnEntryTextChanged"
+                           Completed="OnEntryCompleted"
+                           Placeholder="Equation as text using the syntax below:"
+                           PlaceholderTextColor="{DynamicResource backgroundTextBlend25PcColor}"
+                           TextColor="{DynamicResource contrastColor}"
+                   ></common:ImprovedEntry>
+        </StackLayout>
+
+
+        <syncfusion:SfDataGrid Grid.Row="1" x:Name="syntaxGrid" VerticalOptions="FillAndExpand"
+                        GridStyle="{StaticResource sfGridStyle}"
+                        AutoGenerateColumns="False"
+                        AllowSorting="False"
+                        ItemsSource="{Binding Syntaxes}"
+                        GridLoaded="SyntaxGrid_GridLoaded"
+                        RowHeight = "26"
+                        HeaderRowHeight="22"
+                        FrozenColumnsCount="1"
+                        GridTapped="SyntaxGrid_GridTapped"
+                           >
+            <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                <syncfusion:GridTextColumn HeaderText="Item" MappingName="Item"
+                            ColumnSizer = "Auto" CellTextSize="12"  HeaderCellTextSize="14" >
+                </syncfusion:GridTextColumn>
+                <syncfusion:GridTextColumn HeaderText="Syntax" MappingName="Syntax"
+                            ColumnSizer = "Auto" CellTextSize="12" HeaderCellTextSize="14">
+                </syncfusion:GridTextColumn>
+                <syncfusion:GridTextColumn HeaderText="Note" MappingName="Note"
+                            ColumnSizer = "Auto" CellTextSize="12"  HeaderCellTextSize="14" TextAlignment="Start" HeaderTextAlignment="Start">
+                </syncfusion:GridTextColumn>
+
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+
+        <ContentView Grid.Row="2" BackgroundColor="{DynamicResource contrastColor}" Margin="0,5,0,1" >
+            <ContentView BackgroundColor="{DynamicResource mainBackgroundColor}" Margin="1" >
+                <eqnuc:ucMathDisplay MathExpression="{Binding EquationCalc}"
+                             AllowHorizonatalScroll="True" EmptyText="{Binding EquationMsg}"
+                             VerticalOptions="Center" Padding="10,5,5,1"
+                         >
+                    <eqnuc:ucMathDisplay.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="EquationTapped"
+                            NumberOfTapsRequired="1" />
+                    </eqnuc:ucMathDisplay.GestureRecognizers>
+                </eqnuc:ucMathDisplay>
+            </ContentView>
+        </ContentView>
+
+        <Grid Grid.Row="3" VerticalOptions="Center" RowSpacing="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <common:LcButton Grid.Column="0" x:Name="btnBack" Text="&lt;Back" Clicked="btnBack_Clicked"
+                       FontSize="Small"  HeightRequest="40"
+                       BackgroundColor="{DynamicResource mainBackgroundColor}" TextColor="{DynamicResource contrastColor}"
+                       ></common:LcButton>
+            <Label Grid.Column="1" FontSize="Small" HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">Input Equation
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="EquationTapped"
+                            NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+            <common:LcButton Grid.Column="2"  Text="Next&gt;"  Clicked="btnNext_Clicked"
+                       FontSize="Small"  HeightRequest="40"
+                       BackgroundColor="{DynamicResource mainBackgroundColor}" TextColor="{DynamicResource contrastColor}"
+                       ></common:LcButton>
+        </Grid>
+    </Grid>
+
+</common:AwaitableContentPage>

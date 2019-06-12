@@ -1,0 +1,262 @@
+Index,ParamType
+1,absorbed dose
+2,acceleration linear
+3,acoustic impedance
+4,activity (of radioactivity)
+5,admittance
+6,affinity of a chemical reaction
+7,amount of a substance
+8,amount of substance
+9,angle per length
+10,angle per time
+11,angle per volume
+12,angular acceleration
+13,angular velocity
+14,area
+15,area per area
+16,area per time
+17,area per volume
+18,areic mass
+19,attenuation
+20,attenuation
+21,attenuation per length
+22,breadth
+23,bulk compressibility
+24,bulk modulus
+25,capacitance
+26,Cartesian coordinates
+27,charge density
+28,chemical potential
+29,circular frequency
+30,coefficient of thermal insulation
+31,compressibility
+32,concentration of B
+33,conductivity
+34,cross section absorption
+35,current density
+36,Darcy flow coefficient
+37,data transmission speed
+38,data transmission speed
+39,delta temperature
+40,density
+41,density of heat flow rate
+42,depth
+43,diameter
+44,diffusion coefficient
+45,digital storage
+46,dimensionless
+47,distance
+48,dose equivalent
+49,dose equivalent rate
+50,dynamic viscosity
+51,electric capacity
+52,electric charge
+53,electric conductance
+54,electric current
+55,electric dipole moment
+56,electric field strength
+57,electric flux
+58,electric polarization
+59,electric potential
+60,electrical resistivity
+61,electrochemical equivalent
+62,electromagnetic energy density
+63,electromagnetic moment
+64,energy
+65,energy fluence rate
+66,energy length per area
+67,energy length per time area temperature
+68,energy per area
+69,energy per length
+70,equivalent per mass
+71,equivalent per volume
+72,exposure (radioactivity)
+73,fluence rate
+74,force
+75,force area
+76,force length per length
+77,force per area
+78,force per force
+79,force per length
+80,force per volume
+81,force per volume
+82,frequency
+83,frequency
+84,frequency interval
+85,gamma ray API unit
+86,heat capacity
+87,heat flow rate
+88,heat transfer coefficient
+89,height
+90,illuminance
+91,impedance
+92,impulse
+93,interval transit time
+94,irradiance
+95,isothermal compressibility
+96,kinematic viscosity
+97,length
+98,length of path
+99,length per length
+100,length per temperature
+101,length per volume
+102,level of power intensity
+103,light exposure
+104,linear concentration
+105,linear density
+106,linear electric current density
+107,linear mass
+108,linear strain
+109,linear thermal expansion
+110,luminance
+111,luminous efficacy
+112,luminous exitance
+113,luminous flux
+114,luminous intensity
+115,magnetic dipole moment
+116,magnetic field strength
+117,magnetic flux
+118,magnetic flux density
+119,magnetic induction
+120,magnetic permeability
+121,magnetic potential difference
+122,magnetic vector potential
+123,magnetization
+124,magnetomotive force
+125,mass
+126,mass attenuation coefficient
+127,mass concentration
+128,mass density
+129,mass flow rate
+130,mass length
+131,mass per energy
+132,mass per length
+133,mass per time per area
+134,mass per time per length
+135,mass per volume per length
+136,massic heat capacity
+137,massic volume
+138,mean free path
+139,mobility
+140,modulus of compression
+141,modulus of elasticity
+142,modulus of rigidity
+143,molar entropy
+144,molar gas constant
+145,molar heat capacity
+146,molar thermodynamic energy
+147,molar volume
+148,mole per area
+149,mole per time
+150,mole per time per area
+151,moment of couple
+152,moment of force
+153,moment of inertia
+154,moment of section
+155,momentum
+156,neutron API unit
+157,nonDarcy flow coefficient
+158,normal stress
+159,operations per time
+160,parachor
+161,per area
+162,per electric potential
+163,per force
+164,per length
+165,per mass
+166,per time
+167,per volume
+168,permeability length
+169,permeability rock
+170,permeance
+171,permittivity
+172,pH
+173,plane angle
+174,poisson ratio
+175,potential difference per per power drop
+176,power
+177,power per volume
+178,poynting vector
+179,pressure
+180,pressure per length
+181,pressure per length
+182,pressure per time
+183,pressure squared
+184,pressure squared per (dynamic viscosity)
+185,pressure time per volume
+186,productivity index
+187,productivity index
+188,quantity of light
+189,radiance
+190,radiant energy
+191,radiant energy density
+192,radiant exitance
+193,radiant intensity
+194,radius
+195,radius of curvature
+196,relative elongation
+197,relative power
+198,relative time
+199,reluctance
+200,resistance
+201,resistivity per length
+202,rotational frequency
+203,rotational velocity
+204,scale
+205,second moment of area
+206,self inductance
+207,shear modulus
+208,shear strain
+209,shear stress
+210,slowness
+211,solid angle
+212,sound intensity
+213,specific activity (of radioactivity)
+214,specific energy
+215,specific heat capacity
+216,specific productivity index
+217,specific volume
+218,stadard volume per volume
+219,standard volume
+220,standard volume
+221,standard volume per area
+222,standard volume per area
+223,standard volume per time
+224,standard volume per volume
+225,surface density
+226,susceptance
+227,temperature per length
+228,temperature per time
+229,thermal conductance
+230,thermal conductivity
+231,thermal diffusivity
+232,thermal insulance
+233,thermal resistance
+234,thermodynamic temperature
+235,thickness
+236,time
+237,time per length
+238,time per volume
+239,torque
+240,unit productivity index
+241,velocity
+242,volume
+243,volume flow rate
+244,volume length per time
+245,volume per area
+246,volume per length
+247,volume per standard volume
+248,volume per standard volume
+249,volume per time per area
+250,volume per time per length
+251,volume per time per time
+252,volume per time per volume
+253,volume per volume
+254,volumetric heat transfer coefficient
+255,volumetric thermal expansion
+256,volumic concentration
+257,volumic concentration
+258,volumic mass
+259,wave number
+260,wavelength
+261,work

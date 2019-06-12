@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:syncfusionGrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:syncfusionPicker="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Class="AnyEquation.Equations.Views.TestPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="stackMain">
+            <!--<Label Text="Choose an Equation" />-->
+            
+
+
+            <!--<common:BindablePicker x:Name="pickItem" Title="Choose Sub-item" Style="{StaticResource PickerStyle}"
+                                            ItemsSource="{Binding Path=JunkChildNames}"
+                                            SelectedIndex="{Binding SelectedChildIndex}"
+                                            ItemDisplayBinding=""
+                                   >
+            </common:BindablePicker>
+            
+            <syncfusionPicker:SfPicker x:Name="picker" HeaderText="Select an item" 
+                                       ItemsSource="{Binding Path=SelectedLevelChildNames}" 
+                                       PickerMode="Dialog"
+                                       IsVisible="False"
+                                       SelectedItem="{Binding Path=SelectedLevelSelectedChildName}"
+                                       
+                                       >
+
+            </syncfusionPicker:SfPicker>-->
+
+                <ListView x:Name="lstTreeLevels" ItemsSource="{Binding SelectedTreeLevels}" 
+                            ItemTapped="lstTreeLevels_ItemTap" Margin="20,40,0,0"
+                          >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                <Label Text="{Binding Path=DescriptiveText}" FontSize="Large"/>
+                                    
+                                    <!--<common:LcButton Text="{Binding Path=DescriptiveText}" HorizontalOptions="FillAndExpand"
+                                             Clicked="Item_Clicked"
+                                             FontSize="Small"
+                                             BackgroundColor="{DynamicResource mainBackgroundColor}" TextColor="{DynamicResource contrastColor}" 
+                                                            ></common:LcButton>-->
+                                    <!--<StackLayout>
+                                        <Label Text="Parent:"/>-->
+                                    
+                                        <!--<Button Text="{Binding Path=TreeNode.Name}" HorizontalOptions="FillAndExpand"/>-->
+                                        <!--<syncfusionPicker:SfPicker x:Name="picker" HeaderText="Select an item" ItemsSource="{Binding Path=ChildNames}">
+                                        
+                                        </syncfusionPicker:SfPicker>-->
+                                        <!--<common:BindablePicker Title="Choose Sub-item" Style="{StaticResource PickerStyle}"
+                                                ItemsSource="{Binding Path=ChildNames}"
+                                                SelectedIndex="{Binding SelectedChildIndex}">
+                                        </common:BindablePicker>-->
+
+                                        <!--<ListView ItemsSource="{Binding Path=TreeNode.ChildTreeNodes}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <ViewCell.View>
+                                                            <StackLayout>
+                                                                <Label Text="Child:"/>
+                                                                <Label Text="{Binding Name}"/>
+                                                            </StackLayout>
+                                                        </ViewCell.View>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>-->
+                                    <!--</StackLayout>-->
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            
+            <ListView x:Name="lstLevels" VerticalOptions="FillAndExpand"
+                                           ItemsSource="{Binding Path=SelectedLevelChildNames}" 
+                                           IsVisible="False"
+                                           SelectedItem="{Binding Path=SelectedLevelSelectedChildName}"
+                                       
+                                           >
+            </ListView>
+
+            <ListView x:Name="lstEquations"
+                ItemsSource="{Binding EquationCalcs}"
+                HasUnevenRows ="True" VerticalOptions="FillAndExpand" HorizontalOptions="Start"
+                SelectedItem="{Binding CurrentEquationCalc, Mode=TwoWay}"
+                ItemTapped="lstEquations_ItemTap"
+                IsVisible="False"
+              >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical" Padding="10">
+                                    <Label Text="{Binding Description}"></Label>
+                                    <eqnuc:ucMathDisplay MathExpression="{Binding}" AllowHorizonatalScroll="False"></eqnuc:ucMathDisplay>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--+++++++++++++++ Equation ++++++++ -->
+            <StackLayout x:Name="equationDisplay" Orientation="Vertical" Padding="10" >
+                <Label Text="{Binding CurrentEquationCalc.Description}" ></Label>
+                <eqnuc:ucMathDisplay MathExpression="{Binding CurrentEquationCalc}" AllowHorizonatalScroll="True" EmptyText=""></eqnuc:ucMathDisplay>
+            </StackLayout>
+
+            <!--<eqnuc:ucMathDisplay x:Name="equationDisplay" MathExpression="{Binding CurrentEquationCalc}" AllowHorizonatalScroll="True"
+                                 EmptyText=""
+                             VerticalOptions="Center"></eqnuc:ucMathDisplay>-->
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

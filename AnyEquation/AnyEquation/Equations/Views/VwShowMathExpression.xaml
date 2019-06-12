@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:loc="clr-namespace:AnyEquation.Options.PanGesture"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Class="AnyEquation.Equations.Views.VwShowMathExpression"
+             Title="Math Expression"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <eqnvw:SfGridStyle x:Key="sfGridStyle" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                iOS="5, 20, 0, 0"
+                Android="5, 0, 0, 0"
+                WinPhone="5, 0, 0, 0" />
+    </ContentPage.Padding>
+
+    <AbsoluteLayout>
+        <!--Allows us to implement a busy overlay-->
+
+        <StackLayout BackgroundColor="{DynamicResource mainBackgroundColor}"  Padding="0,2,0,0"
+                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All">
+
+            <Label>Expression:</Label>
+            <!--+++++++++++++++ Equation ++++++++ -->
+            <eqnuc:ucMathDisplay MathExpression="{Binding MathExpression}" AllowHorizonatalScroll="True"></eqnuc:ucMathDisplay>
+
+            <syncfusion:SfDataGrid x:Name="infoGrid" 
+                        GridStyle="{StaticResource sfGridStyle}"
+                        AutoGenerateColumns="False"
+                        AllowSorting="False"
+                        HeaderRowHeight="0"           
+                        ItemsSource="{Binding InfoRows}"
+                        Padding="10,20,10,10">
+
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderText="Label" MappingName="Label"
+                                        ColumnSizer = "Auto">
+                    </syncfusion:GridTextColumn>
+
+                    <syncfusion:GridTextColumn HeaderText="Text" MappingName="Text"
+                                        Width = "1000" HeaderTextAlignment="Start" TextAlignment="Start">
+                    </syncfusion:GridTextColumn>
+
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+        </StackLayout>
+
+        <!-- Overlay -->
+        <common:BusyOverlay></common:BusyOverlay>
+
+    </AbsoluteLayout>
+</ContentPage>    

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnyEquation.Options.Css3Colors.Css3ColorsPage"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             Title="Page and Text Colors"
+             Style="{DynamicResource ContentPageStyle}"
+              >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <OnPlatform x:Key="boxHeight"
+                  x:TypeArguments="x:Double"
+                  iOS="50"
+                  Android="50"
+                  WinPhone="75" />
+      <OnPlatform x:Key="boxWidth"
+                  x:TypeArguments="x:Double"
+                  iOS="80"
+                  Android="80"
+                  WinPhone="105" />
+
+      <OnPlatform x:Key="gridRowHeight"
+                  x:TypeArguments="GridLength"
+                  iOS="60"
+                  Android="60"
+                  WinPhone="85" />
+      <OnPlatform x:Key="col0Width"
+                  x:TypeArguments="GridLength"
+                  iOS="90"
+                  Android="90"
+                  WinPhone="115" />
+      <OnPlatform x:Key="col2Width"
+                  x:TypeArguments="GridLength"
+                  iOS="90"
+                  Android="60"
+                  WinPhone="115" />
+      <OnPlatform x:Key="colJWidth"
+                  x:TypeArguments="GridLength"
+                  iOS="30"
+                  Android="30"
+                  WinPhone="30" />
+
+      <!-- This is only an issue on the iPhone; Android and 
+           WinPhone auto size the row height to the contents. -->
+      <OnPlatform x:Key="rowHeight"
+                  x:TypeArguments="x:Int32"
+                  iOS="60"
+                  Android="60"
+                  WinPhone="85" />
+
+      <common:FractionToIntRangeConverter x:Key="intConverter" />
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <AbsoluteLayout>  <!--Allows us to implement a busy overlay-->
+
+    <ContentView
+                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="{StaticResource colJWidth}"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackLayout Grid.Row="0" Grid.Column="0" >
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{StaticResource col0Width}"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="{StaticResource col2Width}"/>
+            </Grid.ColumnDefinitions>
+            <ContentView  Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center"
+                          Padding="5, 5, 5, 5" >
+              <Label Text="Background" TextColor="{DynamicResource textColor}"></Label>
+            </ContentView>
+            <ContentView  Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"
+                          Margin="10, 10, 10, 10" >
+              <Button x:Name="BtnReset" Text="Reset" Clicked="BtnReset_Click"></Button>
+            </ContentView>
+            <ContentView  Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center"
+                          Padding="5, 5, 5, 5">
+              <Label Text="Text" TextColor="{DynamicResource textColor}"></Label>
+            </ContentView>
+          </Grid>
+
+          <ListView ItemsSource="{Binding ColorOptions}"
+                  RowHeight="{StaticResource rowHeight}"
+                  x:Name="lstColors"
+                  SelectedItem="{Binding NullSelectedItem, Mode=TwoWay}"
+              >
+            <!--We never want an item selected-->
+
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell>
+                  <ViewCell.View>
+
+                    <Grid>
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="{StaticResource gridRowHeight}" />
+                      </Grid.RowDefinitions>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource col0Width}"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{StaticResource col2Width}"/>
+                      </Grid.ColumnDefinitions>
+
+                      <!--Box showing color and a Switch to select it as the Background color...-->
+                      <ContentView Grid.Row="0" Grid.Column="0"
+                                   BackgroundColor="{Binding Parent.ContrastColor}" Margin="5"
+                                   WidthRequest="{StaticResource boxWidth}" HeightRequest="{StaticResource boxHeight}"
+                                   VerticalOptions="Center" >
+                        <ContentView BackgroundColor="{Binding NamedColor.Color}" Margin="1">
+                          <ContentView  VerticalOptions="Center" HorizontalOptions="Start"
+                                        BackgroundColor="{Binding ColorOfBackgroundSwitch}">
+                            <Switch IsToggled="{Binding BackgroundSelected, Mode=TwoWay}" ></Switch>
+                          </ContentView>
+                        </ContentView>
+                      </ContentView>
+
+                      <!--Text naming the color and showing the RGB values...-->
+                      <StackLayout Grid.Row="0" Grid.Column="1" Padding="5, 0, 0, 0"
+                                 VerticalOptions="Center"
+                                 Spacing="0">
+
+                        <Label Text="{Binding NamedColor.FriendlyName}"
+                               Font="Bold, Medium"
+                               TextColor="{DynamicResource textColor}"/>
+
+                        <Label Text="{Binding NamedColor.Brightness, StringFormat='Brightness={0}'}"
+                               Font="Normal, Micro"
+                               TextColor="{DynamicResource textColor}"/>
+
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="0">
+                          <Label Text="{Binding NamedColor.Color.R,
+                                   Converter={StaticResource intConverter},
+                                   ConverterParameter=255,
+                                   StringFormat='R={0:X2}'}" TextColor="{Binding NamedColor.Color}" />
+                          <Label Text="{Binding NamedColor.Color.G,
+                                   Converter={StaticResource intConverter},
+                                   ConverterParameter=255,
+                                   StringFormat=', G={0:X2}'}"  TextColor="{Binding NamedColor.Color}"/>
+                          <Label Text="{Binding NamedColor.Color.B,
+                                   Converter={StaticResource intConverter},
+                                   ConverterParameter=255,
+                                   StringFormat=', B={0:X2}'}"  TextColor="{Binding NamedColor.Color}"/>
+                        </StackLayout>
+                      </StackLayout>
+
+                      <!--Switch to select as the text color...-->
+                      <ContentView  Grid.Row="0" Grid.Column="2"
+                                    VerticalOptions="Center" HorizontalOptions="Center"
+                                    Padding="0,0,0,0" BackgroundColor="{Binding Parent.ColorOfTextSwitch}">
+                        <Switch  IsToggled="{Binding TextSelected, Mode=TwoWay}" ></Switch>
+                      </ContentView>
+
+                      <!--</StackLayout>-->
+                    </Grid>
+
+                  </ViewCell.View>
+                </ViewCell>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+
+        </StackLayout>
+
+        <ContentView Grid.Row="0" Grid.Column="1" BackgroundColor="{DynamicResource textColor}">
+          <ContentView BackgroundColor="{DynamicResource mainBackgroundColor}" Margin="1" Padding="5,20,0,0">
+            <ListView Grid.Row="0" Grid.Column="1" ItemsSource="{Binding JumpPoints}"
+                    x:Name="lstJumpPoints" RowHeight="20" VerticalOptions="FillAndExpand"
+                    ItemTapped="lstJumpPoints_ItemTap">
+              <ListView.ItemTemplate>
+                <DataTemplate>
+                  <ViewCell >
+                    <ViewCell.View>
+                      <Label Text="{Binding Text}"  TextColor="{DynamicResource textColor}" FontSize="Small"/>
+                    </ViewCell.View>
+                  </ViewCell>
+                </DataTemplate>
+              </ListView.ItemTemplate>
+            </ListView>
+          </ContentView>
+        </ContentView>
+
+      </Grid>
+    </ContentView>
+
+    <!-- Overlay -->
+    <common:BusyOverlay></common:BusyOverlay>
+  </AbsoluteLayout>
+
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwLaunchPage"
+             Title="Equations"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Name="Equations"
+             >
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--Allows us to implement a busy overlay-->
+            <StackLayout>
+                <Label Text="Loading, please wait..." FontSize="Large"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Switch IsToggled="{Binding JustLoaded}" Toggled="Switch_OnJustLoaded" IsVisible="False" />
+            </StackLayout>
+            <common:BusyOverlay></common:BusyOverlay>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

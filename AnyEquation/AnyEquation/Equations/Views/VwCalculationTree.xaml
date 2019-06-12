@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:loc="clr-namespace:AnyEquation.Options.PanGesture"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Class="AnyEquation.Equations.Views.VwCalculationTree"
+             Title="Calculation Tree"
+             >
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                iOS="5, 20, 0, 0"
+                Android="5, 0, 0, 0"
+                WinPhone="5, 0, 0, 0" />
+    </ContentPage.Padding>
+
+    <AbsoluteLayout>
+        <!--Allows us to implement a busy overlay-->
+
+        <StackLayout BackgroundColor="{DynamicResource mainBackgroundColor}"  Padding="0,2,0,0"
+                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All">
+
+            <!--+++++++++++++++ Equation ++++++++ -->
+            <eqnuc:ucMathDisplay MathExpression="{Binding CurrentEquationCalc}" AllowHorizonatalScroll="True"></eqnuc:ucMathDisplay>
+
+            <Label>Tap any row for more information :</Label>
+            <ListView x:Name="lstTreeLevels" ItemsSource="{Binding CalculationTreeRows}" HorizontalOptions="Start" Margin="0,10,0,0"
+                      ItemTapped="lstTreeLevels_ItemTap">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding DisplayText}" TextColor="{DynamicResource textColor}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+        <!-- Overlay -->
+        <common:BusyOverlay></common:BusyOverlay>
+
+    </AbsoluteLayout>
+</ContentPage>

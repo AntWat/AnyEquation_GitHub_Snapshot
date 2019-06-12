@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<common:AwaitableContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwChooseUomPage"
+             Title="Choose Units of Measure"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Name="view"
+             >
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <eqnvw:ChooseUomGroupConverter x:Key="groupConverter" />
+      <eqnvw:SfChooseUomGridStyle x:Key="sfChooseUomGridStyle" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <StackLayout VerticalOptions="FillAndExpand">
+    <Label Text="Choose Units of Measure:"></Label>
+    <Button x:Name="Cancel" Clicked="Cancel_Clicked" Text="Cancel"></Button>
+    <syncfusion:SfDataGrid x:Name="unitsGrid"
+                       AutoGenerateColumns="False"
+                       ColumnSizer="LastColumnFill"
+                       RowHeight="30"
+                       GridStyle="{StaticResource sfChooseUomGridStyle}"
+                       AllowSorting="True" AllowTriStateSorting="True"
+                       AutoExpandGroups="False"
+                       AllowGroupExpandCollapse="True"
+                       ItemsSource="{Binding RowInfoCollection}"
+                       GridTapped="UnitsGrid_GridTapped"
+                       SelectionChanged = "UnitsGrid_SelectionChanged"
+                       SelectionMode="Single"
+                       GridLoaded="UnitsGrid_GridLoaded"
+                           >
+      <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+        <syncfusion:GridTextColumn HeaderText="Grp" MappingName="Group"
+                                   ColumnSizer = "Auto"/>
+        <syncfusion:GridTextColumn HeaderText="Unit" MappingName="Unit"
+                                   ColumnSizer = "Auto"/>
+        <syncfusion:GridTextColumn Width = "1000"
+                                   HeaderText="Param Type"
+                                   MappingName="Parameter"
+                                   TextAlignment="Start" LineBreakMode="NoWrap" />
+      </syncfusion:SfDataGrid.Columns>
+      <syncfusion:SfDataGrid.GroupColumnDescriptions>
+        <syncfusion:GroupColumnDescription x:Name="unitsGridGroupColumnDescription"
+                                           ColumnName="Group"
+                                           Converter="{StaticResource groupConverter}"/>
+      </syncfusion:SfDataGrid.GroupColumnDescriptions>
+    </syncfusion:SfDataGrid>
+
+  </StackLayout>
+
+</common:AwaitableContentPage>

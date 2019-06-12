@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:syncfusionGrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:syncfusionPicker="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             Title="Choose Equation"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Class="AnyEquation.Equations.Views.VwBrowseEquation2">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <eqnvw:ListItemColorConverter x:Key="listItemColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        
+        <StackLayout x:Name="stackMain">
+            <ListView x:Name="lstTreeLevels" ItemsSource="{Binding EquationLibraryDisplayTree}" 
+                      ItemTapped="lstTreeLevels_ItemTap"
+                      Margin="20,40,0,0"
+                      BackgroundColor="{DynamicResource mainBackgroundColor}" 
+                          >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Label Text="{Binding Path=DescriptiveText}"
+                                       TextColor="{Binding IsSelected, ConverterParameter=1, Converter={StaticResource listItemColorConverter}}" 
+                                       BackgroundColor="{Binding IsSelected, ConverterParameter=0, Converter={StaticResource listItemColorConverter}}">
+                                    <!--<Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource textColor}" />
+                                            <Setter Property="TextColor" Value="{DynamicResource mainBackgroundColor}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>-->
+                                    <!--<Style>
+                                        <Setter Property="BackgroundColor" 
+                                    Value="{Binding IsSelected, ConverterParameter=0, Converter={StaticResource listItemColorConverter}}" />
+                                        <Setter Property="TextColor" 
+                                    Value="{Binding IsSelected, ConverterParameter=1, Converter={StaticResource listItemColorConverter}}" />
+                                    </Style>-->
+
+                                </Label>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--+++++++++++++++ Equation ++++++++ -->
+            <StackLayout x:Name="equationDisplay" Orientation="Vertical" Padding="10" 
+                         >
+                <StackLayout Orientation="Horizontal">
+                    <common:LcButton Text="Select Equation" Clicked="SelectEquation_Clicked"
+                                     Command="{Binding SelectEquation}" ></common:LcButton>
+                    <common:LcButton Text="Search"></common:LcButton>
+                    <common:LcButton Text="Cancel" Clicked="Cancel_Clicked"></common:LcButton>
+                </StackLayout>
+                <!--<Label Text="{Binding CurrentEquationCalc.Description}" ></Label>
+                <eqnuc:ucMathDisplay MathExpression="{Binding CurrentEquationCalc}" AllowHorizonatalScroll="True" EmptyText=""></eqnuc:ucMathDisplay>
+                <StackLayout Orientation="Horizontal">
+                    <common:LcButton Text="Ok" Clicked="Ok_Clicked"></common:LcButton>
+                    <common:LcButton Text="Details..." ></common:LcButton>
+                </StackLayout>-->
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>    

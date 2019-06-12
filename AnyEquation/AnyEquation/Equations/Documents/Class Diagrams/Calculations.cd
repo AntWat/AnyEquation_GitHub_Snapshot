@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="AnonUOM is defined by its Dimensions and its UOMSet (e.g. SI).  This is enough info to do conversions.">
+    <Position X="9.249" Y="5.763" Height="1.331" Width="1.159" />
+  </Comment>
+  <Comment CommentText="EqnCalc uses FnEquals for its Base class Function value">
+    <Position X="3.908" Y="12.562" Height="0.496" Width="1.834" />
+  </Comment>
+  <Comment CommentText="Used to hold general information about equation variables when they are not yet part of a calculation">
+    <Position X="1.75" Y="16" Height="0.864" Width="1.91" />
+  </Comment>
+  <Comment CommentText="AnyEquation calculation Class Diagram">
+    <Position X="0.5" Y="0.5" Height="0.662" Width="1.057" />
+  </Comment>
+  <Comment CommentText="TODO: BaseUOM not currently set or used">
+    <Position X="5.649" Y="7.305" Height="0.431" Width="1.427" />
+  </Comment>
+  <Comment CommentText="Q: Will we ever need meta info about the arguments to a Function? Add etc. are generic but a Function could be a specific implemented algorithm?">
+    <Position X="6.983" Y="18.163" Height="1.229" Width="1.676" />
+  </Comment>
+  <Class Name="AnyEquation.Equations.Model.SingleResult">
+    <Position X="1" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="GetAllConstants" Hidden="true" />
+      <Method Name="GetAllLiterals" Hidden="true" />
+      <Method Name="GetAllVariables" Hidden="true" />
+    </Members>
+    <AssociationLine Name="CalcQuantity" Type="AnyEquation.Equations.Model.CalcQuantity">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.2" Y="0.07" Height="0.182" Width="1.145" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ParamType" Type="AnyEquation.Equations.Model.ParamType" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="5.07" />
+        <Point X="3" Y="5.07" />
+        <Point X="3" Y="5.592" />
+        <Point X="3.67" Y="5.592" />
+        <Point X="3.67" Y="6.919" />
+        <Point X="4" Y="6.919" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.646" Y="1.158" Height="0.182" Width="0.925" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAFgAAAEAAAAAAQEAAAABAAABAAAAAgBAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\SingleResult.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CalcQuantity" />
+      <Property Name="ParamType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.SingleValue">
+    <Position X="1" Y="7.5" Width="1.5" />
+    <Members>
+      <Method Name="SingleValue" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\SingleValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Literal">
+    <Position X="2" Y="13.5" Width="1.5" />
+    <Members>
+      <Method Name="Literal" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="AnyEquation.Equations.Model.SingleValue" ManuallyRouted="true">
+      <Path>
+        <Point X="1.75" Y="8.733" />
+        <Point X="1.75" Y="9.953" />
+        <Point X="2.75" Y="9.953" />
+        <Point X="2.75" Y="13.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\Literal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Constant">
+    <Position X="1" Y="10.5" Width="1.5" />
+    <Members>
+      <Method Name="Constant" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Variable">
+    <Position X="1.5" Y="12" Width="1.5" />
+    <Members>
+      <Method Name="Variable" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="AnyEquation.Equations.Model.SingleValue" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.75" Y="8.733" />
+        <Point X="1.75" Y="9.956" />
+        <Point X="2.625" Y="9.956" />
+        <Point X="2.625" Y="12" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\Variable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.UOM">
+    <Position X="8" Y="1" Width="1.5" />
+    <Members>
+      <Field Name="_dimensions" Hidden="true" />
+      <Method Name="UOM" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Dimensions" Type="AnyEquation.Equations.Model.Dimensions">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.673" Y="0.129" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAIAAAABAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\UOM.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Dimensions" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Quantity">
+    <Position X="4.75" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="Quantity" Hidden="true" />
+    </Members>
+    <AssociationLine Name="CalcStatus" Type="AnyEquation.Equations.Common.CalcStatus">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.337" Y="0.085" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAgIARAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\Quantity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CalcStatus" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.ParamType" BaseTypeListCollapsed="true">
+    <Position X="4" Y="6.75" Width="1.75" />
+    <Members>
+      <Method Name="ParamType" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Dimensions" Type="AnyEquation.Equations.Model.Dimensions" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="8.666" />
+        <Point X="9.042" Y="8.666" Type="JumpStart" />
+        <Point X="9.208" Y="8.666" Type="JumpEnd" />
+        <Point X="13" Y="8.666" />
+        <Point X="13" Y="2.891" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="6.285" Y="5.518" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgAAAAAAAAAAYACAAQAAQAAQAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\ParamType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Dimensions" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.NormalFunction">
+    <Position X="5" Y="20.25" Width="2" />
+    <Members>
+      <Method Name="NormalFunction" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Functions\NormalFunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.KnownUOM">
+    <Position X="11" Y="5" Width="1.5" />
+    <Members>
+      <Field Name="_AFactor" Hidden="true" />
+      <Field Name="_BaseUOM" Hidden="true" />
+      <Field Name="_BFactor" Hidden="true" />
+      <Field Name="_CFactor" Hidden="true" />
+      <Field Name="_Description" Hidden="true" />
+      <Field Name="_DFactor" Hidden="true" />
+      <Field Name="_IsBase" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_Symbol" Hidden="true" />
+      <Method Name="KnownUOM" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="AnyEquation.Equations.Model.UOM" ManuallyRouted="true">
+      <Path>
+        <Point X="8.75" Y="2.296" />
+        <Point X="8.75" Y="3.387" />
+        <Point X="11.75" Y="3.387" />
+        <Point X="11.75" Y="5" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="BaseUOM" Type="AnyEquation.Equations.Model.KnownUOM" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.5" Y="6.274" />
+        <Point X="12.75" Y="6.274" />
+        <Point X="12.75" Y="5.588" />
+        <Point X="12.5" Y="5.588" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.056" Y="-0.979" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQkAgAAAACAAAIAQACBQQAAAFBQAAAJAAiAA=</HashCode>
+      <FileName>Equations\Model\Calculations\KnownUOM.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BaseUOM" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.FunctionCalc">
+    <Position X="4.25" Y="9.5" Width="2.25" />
+    <Members>
+      <Method Name="AddExpressionInputs" Hidden="true" />
+      <Method Name="CalcDimensions_Recursive" Hidden="true" />
+      <Method Name="Calculate_Here" Hidden="true" />
+      <Method Name="Calculate_Recursive" Hidden="true" />
+      <Method Name="ExpressionAsText" Hidden="true" />
+      <Method Name="FunctionCalc" Hidden="true" />
+      <Method Name="FunctionCalcAsText" Hidden="true" />
+      <Method Name="GetCalculationTreeText2" Hidden="true" />
+      <Method Name="GetCalculationTreeText3" Hidden="true" />
+      <Method Name="GetErrors2" Hidden="true" />
+      <Method Name="GetErrors3" Hidden="true" />
+      <Method Name="MathExpressionAsText" Hidden="true" />
+      <Method Name="SingleValueAsText" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Function" Type="AnyEquation.Equations.Model.Function">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.129" Y="2.794" Height="0.182" Width="0.941" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Inputs" Type="AnyEquation.Equations.Model.SingleResult" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="10.144" />
+        <Point X="3.277" Y="10.144" />
+        <Point X="3.277" Y="5.982" />
+        <Point X="2.5" Y="5.982" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.097" Y="-4.092" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAACAAACABEwAgBAABEAAIAMAwQAAABAAICAACABAQ=</HashCode>
+      <FileName>Equations\Model\Calculations\FunctionCalc.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Function" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Inputs" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.FunCalcError">
+    <Position X="6.5" Y="11.75" Width="1.5" />
+    <Members>
+      <Method Name="FunCalcError" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\FunctionCalc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Function">
+    <Position X="5.25" Y="16.75" Width="1.5" />
+    <Members>
+      <Method Name="Function" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQBAAAAgAQAAAABAAQAEiAAIAAAAAAAAAAACAA=</HashCode>
+      <FileName>Equations\Model\Functions\Function.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FuncLayout" />
+      <Property Name="AsciiLayout" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.FnEquals">
+    <Position X="7.5" Y="20.25" Width="2" />
+    <Members>
+      <Method Name="FnEquals" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Functions\FnEquals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.EqnCalc">
+    <Position X="4.5" Y="13.25" Width="1.5" />
+    <Members>
+      <Method Name="EqnCalc" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="AnyEquation.Equations.Model.EqnCalc.EqSide" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Equations\Model\Calculations\EqnCalc.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="AnyEquation.Equations.Model.EqnCalc.Foundlocation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Equations\Model\Calculations\EqnCalc.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\EqnCalc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.DisplayQuantity">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <Members>
+      <Method Name="DisplayQuantity" Hidden="true" />
+    </Members>
+    <AssociationLine Name="KownUOM" Type="AnyEquation.Equations.Model.KnownUOM">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="2.832" Y="0.719" Height="0.182" Width="1.194" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAE=</HashCode>
+      <FileName>Equations\Model\Calculations\DisplayQuantity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="KownUOM" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Dimensions">
+    <Position X="11.25" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="AddDimensions" Hidden="true" />
+      <Method Name="AreEqual" Hidden="true" />
+      <Property Name="Currency" Hidden="true" />
+      <Method Name="Dimensions" Hidden="true" />
+      <Property Name="ElectricCurrent" Hidden="true" />
+      <Method Name="IsDimenionless" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+      <Property Name="Luminosity" Hidden="true" />
+      <Property Name="Mass" Hidden="true" />
+      <Method Name="MultiplyDimensions" Hidden="true" />
+      <Property Name="PlaneAngle" Hidden="true" />
+      <Property Name="QuantityOfSubstance" Hidden="true" />
+      <Property Name="SolidAngle" Hidden="true" />
+      <Method Name="SubtractDimensions" Hidden="true" />
+      <Property Name="Temperature" Hidden="true" />
+      <Property Name="Time" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gCAAIAACEAAAAQAEgiAAAABACAAAAAAwAAEAAIDEIwA=</HashCode>
+      <FileName>Equations\Model\Calculations\Dimensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.CalcQuantity">
+    <Position X="3.75" Y="3.75" Width="1.5" />
+    <Members>
+      <Method Name="CalcQuantity" Hidden="true" />
+    </Members>
+    <AssociationLine Name="AnonUOM" Type="AnyEquation.Equations.Model.AnonUOM">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="2.051" Y="0.025" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAIAAACAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\CalcQuantity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AnonUOM" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.AnonUOM">
+    <Position X="8" Y="5" Width="1.5" />
+    <Members>
+      <Field Name="_uOMSet" Hidden="true" />
+      <Method Name="AnonUOM" Hidden="true" />
+    </Members>
+    <AssociationLine Name="UOMSet" Type="AnyEquation.Equations.Model.UOMSet">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.053" Y="2.442" Height="0.182" Width="0.805" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgABAAAAAAAAEgEAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\AnonUOM.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UOMSet" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Functions.FnAdd">
+    <Position X="4" Y="22.25" Width="1.5" />
+    <Members>
+      <Method Name="FnAdd" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Functions\FnAdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Functions.FnDivide">
+    <Position X="5.75" Y="22.25" Width="1.5" />
+    <Members>
+      <Method Name="FnDivide" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Functions\FnDivide.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.Info.VarInfo">
+    <Position X="0.5" Y="16.25" Width="1.5" />
+    <Members>
+      <Method Name="VarInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Info\VarInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.UOMSet">
+    <Position X="8.75" Y="9.75" Width="2" />
+    <Members>
+      <Method Name="UOMSet" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\UOMSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.BadCalcQuantity" Collapsed="true">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="AnyEquation.Equations.Model.CalcQuantity" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="5.367" />
+        <Point X="4.5" Y="5.812" />
+        <Point X="5.25" Y="5.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\BadCalcQuantity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.AnyUOMSet">
+    <Position X="11.5" Y="8.75" Width="2" />
+    <Members>
+      <Field Name="_KnownUOMs" Hidden="true" />
+      <Method Name="AddUomStringPart" Hidden="true" />
+      <Method Name="AnyUOMSet" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAEAAAAAAAAAIAAAAQAAAACAQABAAAIAAAAAEE=</HashCode>
+      <FileName>Equations\Model\Calculations\AnyUOMSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="AnyEquation.Equations.Model.IContent">
+    <Position X="10.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\IContent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="AnyEquation.Equations.Model.FuncLayout">
+    <Position X="8" Y="16" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAEAAIAAEACAAAAIAAAAA=</HashCode>
+      <FileName>Equations\Model\Functions\Function.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AnyEquation.Equations.Model.DimType">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAIAAAAAAAAAAAAgAAAABACAAAAAAQAAAAAICEAQA=</HashCode>
+      <FileName>Equations\Model\Calculations\Dimensions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AnyEquation.Equations.Common.CalcStatus">
+    <Position X="2" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Equations\Common\Result.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

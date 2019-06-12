@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit=
+                 "clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwEquationsPage2"
+             Title="Equations"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Name="Equations"
+             >
+    <AbsoluteLayout>
+        <!--Allows us to implement a busy overlay-->
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <eqnvw:SfGridStyle x:Key="sfGridStyle" />
+                <eqnvw:NumericConverter x:Key="numericConverter" />
+                <eqnvw:CalcGridcolorConverter x:Key="calcGridcolorConverter" />
+
+                <common:MultiplyDoubleConverter x:Key="multiplyConverter" />
+                <toolkit:BooleanNegationConverter x:Key="booleanNegationConverter" />
+
+            </ResourceDictionary>
+        </ContentPage.Resources>
+
+        <Grid VerticalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--+++++++++++++++ Description ++++++++ -->
+            <Grid Grid.Row="0" VerticalOptions="Center" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="{Binding CurrentEqCalcDescription}" ></Label>
+
+                <Button x:Name="btnMenu" Grid.Column="1" Text="&#x25AA; &#x25AA; &#x25AA;" 
+                      BackgroundColor="Yellow" WidthRequest="50" FontSize="Micro" HeightRequest="30"
+                      HorizontalOptions="End"
+                    Clicked="btnMenu_Clicked"
+                    >
+                </Button>
+            </Grid>
+
+            <!--+++++++++++++++ Equation ++++++++ -->
+            <eqnuc:ucMathDisplay Grid.Row="1" MathExpression="{Binding CurrentEquationCalc}" AllowHorizonatalScroll="True"
+                             VerticalOptions="Center"></eqnuc:ucMathDisplay>
+
+            <StackLayout Grid.Row="2" Orientation="Horizontal">
+                <Button x:Name="btnRefresh" Clicked="btnRefresh_Clicked" WidthRequest="50">
+                    <Button.Image>
+                        <OnPlatform x:TypeArguments="FileImageSource"
+                                                    iOS="reload.png"
+                                                    Android="ic_action_refresh.png"
+                                                    WinPhone="Images/refresh.png" />
+                    </Button.Image>
+                </Button>
+                <!--+++++++++++++++ ErrorMessage ++++++++ -->
+                <ContentView Padding="5" Margin="10">
+                    <ContentView.Triggers>
+                        <DataTrigger TargetType="ContentView" Binding="{Binding ErrorMessageExists}" Value="true">
+                            <Setter Property="BackgroundColor" Value="{DynamicResource textColor}" />
+                        </DataTrigger>
+                    </ContentView.Triggers>
+                    <Label Text="{Binding InfoMessage}" FontSize="Default" HorizontalTextAlignment="Start" VerticalTextAlignment="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding ErrorMessageExists}" Value="true">
+                                <Setter Property="TextColor" Value="{DynamicResource mainBackgroundColor}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </ContentView>
+            </StackLayout>
+
+            <syncfusion:SfDataGrid Grid.Row="3" x:Name="calcGrid" 
+                        GridStyle="{StaticResource sfGridStyle}"
+                        AutoGenerateColumns="False"
+                        AllowSorting="False"
+                        ItemsSource="{Binding EqCalcVariables}"
+                        FrozenRowsCount ="1" FrozenColumnsCount="1"
+                        EditTapAction="OnTap"
+                        GridLoaded="CalcGrid_GridLoaded"
+                        GridViewCreated="CalcGrid_GridViewCreated"
+                        GridTapped="CalcGrid_GridTapped"
+                        CurrentCellBeginEdit = "CalcGrid_CurrentCellBeginEdit"
+                        CurrentCellEndEdit = "CalcGrid_CurrentCellEndEdit"
+                                    >
+
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderText="Var" MappingName="DisplayName"
+                                        ColumnSizer = "Auto">
+                    </syncfusion:GridTextColumn>
+
+                    <syncfusion:GridNumericColumn HeaderText="Value" MappingName="Value"
+                                        AllowEditing="True"
+                                        Width="100">
+                        <syncfusion:GridTextColumn.CellStyle>
+                            <Style TargetType="syncfusion:GridCell">
+                                <Setter Property="BackgroundColor" 
+                                    Value="{Binding IsCalculated, ConverterParameter=0, Converter={StaticResource calcGridcolorConverter}}" />
+                                <Setter Property="Foreground" 
+                                    Value="{Binding IsCalculated, ConverterParameter=1, Converter={StaticResource calcGridcolorConverter}}" />
+                            </Style>
+                        </syncfusion:GridTextColumn.CellStyle>
+                    </syncfusion:GridNumericColumn>
+
+                    <syncfusion:GridTemplateColumn x:Name="UnitsColumn" HeaderText="Units" MappingName="UomSymbol">
+                        <!--Column width is set in code due to a UWP bug-->
+                        <syncfusion:GridTemplateColumn.CellTemplate >
+                            <DataTemplate >
+                                <ContentView Padding="1">
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                        <common:LcButton Text="{Binding UomSymbol}" 
+                                                    Command="{Binding ChooseUom}"
+                                                    Opacity="0.5" FontSize="Small" 
+                                                    BackgroundColor="{DynamicResource textColor}"
+                                                    TextColor="{DynamicResource mainBackgroundColor}"
+                                                    BorderColor="{DynamicResource mainBackgroundColor}"
+                                                    BorderWidth="6" BorderRadius="12"
+                                                    IsVisible="{Binding CanChangeUom}"
+                                                    >
+                                        </common:LcButton>
+                                        <!--<Label Text="" IsVisible="{Binding CanChangeUom, Converter={StaticResource booleanNegationConverter}}"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>-->
+                                    </StackLayout>
+                                </ContentView>
+                            </DataTemplate>
+                        </syncfusion:GridTemplateColumn.CellTemplate>
+                    </syncfusion:GridTemplateColumn>
+
+                    <syncfusion:GridTextColumn HeaderText=" Description" MappingName="Description"
+                                        Width = "1000" HeaderTextAlignment="Start" TextAlignment="Start">
+                    </syncfusion:GridTextColumn>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+        </Grid>
+
+        <!-- Overlay -->
+        <common:BusyOverlay></common:BusyOverlay>
+
+    </AbsoluteLayout>
+</ContentPage>

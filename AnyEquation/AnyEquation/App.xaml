@@ -1,0 +1,151 @@
+﻿<!--This file was added manually, as described in : [Creating Mobile Apps with Xamarin.Forms][Chapter 10, page 217]-->
+
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             x:Class="AnyEquation.App">
+
+  <Application.Resources>
+    <ResourceDictionary>
+
+      <x:String x:Key="AppTitle">AnyEquation</x:String>
+      <x:String x:Key="AppVersion">0.00</x:String>      <!--Reset during startup-->
+      
+      <x:Boolean x:Key="ShowAppBusy">False</x:Boolean>      <!--Allows GUI to indicate busy status and to block activity-->
+
+      <!-- ++++++++++++++ The main page style -->
+      <OnPlatform x:Key="defaultMainBackgroundColor" x:TypeArguments="x:String" 
+                  Android="Firebrick" iOS="White" WinPhone="CadetBlue" />
+      <OnPlatform x:Key="defaultTextColor" x:TypeArguments="x:String"
+                  Android="AntiqueWhite" iOS="Black" WinPhone="Cornsilk" />
+
+      <Color x:Key="mainBackgroundColor">Black</Color>      <!--Reset during startup-->
+      <Color x:Key="textColor">White</Color>      <!--Reset during startup-->
+      <Color x:Key="contrastColor">White</Color>      <!--Reset during startup-->
+      <Color x:Key="entryBackgroundColor">White</Color>      <!--Reset during startup-->
+      <Color x:Key="entryTextColor">White</Color>      <!--Reset during startup-->
+      <Color x:Key="navBarBackColor">White</Color>      <!--Reset during startup-->
+      <Color x:Key="navBarTextColor">White</Color>      <!--Reset during startup-->
+      <Color x:Key="disabledTextColor">Gray</Color>      <!--Reset during startup-->
+
+        <Color x:Key="backgroundTextBlend05PcColor">Gray</Color>
+        <Color x:Key="backgroundTextBlend10PcColor">Gray</Color>
+        <Color x:Key="backgroundTextBlend25PcColor">Gray</Color>
+      <Color x:Key="backgroundTextBlend50PcColor">Gray</Color>    <!--Reset during startup-->
+      <Color x:Key="backgroundTextBlend75PcColor">Gray</Color>            <!--Reset during startup-->
+        <Color x:Key="backgroundTextBlend85PcColor">Gray</Color>
+        <Color x:Key="backgroundTextBlend95PcColor">Gray</Color>
+        
+            <Color x:Key="busyOverlayColor">#96808080</Color>            <!--#C0808080-->
+
+      <Style x:Key="lblStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+      </Style>
+      <Style TargetType="Label" BasedOn="{StaticResource lblStyle}">
+      </Style>
+
+      <!--The following won't work because items that only derive from Element (not VisualElement) do not have a Style Property-->
+              <!--<Style x:Key="ImageCellStyle" TargetType="ImageCell">
+                <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+                <Setter Property="DetailColor" Value="{DynamicResource textColor}" />
+              </Style>
+              <Style TargetType="ImageCell" BasedOn="{StaticResource ImageCellStyle}">
+                <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+                <Setter Property="DetailColor" Value="{DynamicResource textColor}" />
+              </Style>-->
+
+      <Style x:Key="PickerStyle" TargetType="Picker">
+        <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+      </Style>
+      <Style TargetType="Picker" BasedOn="{StaticResource PickerStyle}">
+      </Style>
+
+      <Style TargetType="common:CarouselIndicators">
+        <Setter Property="BackgroundColor" Value="{DynamicResource navBarBackColor}" />
+      </Style>
+      
+      <Style x:Key="visualStyle" TargetType="VisualElement">
+        <Setter Property="BackgroundColor" Value="{DynamicResource mainBackgroundColor}" />
+      </Style>
+
+      <Style x:Key="InputViewStyle" TargetType="InputView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource entryBackgroundColor}" />
+      </Style>
+
+      <Style TargetType="InputView" BasedOn="{StaticResource InputViewStyle}">
+      </Style>
+
+      <Style x:Key="EntryStyle" TargetType="Entry" BasedOn="{StaticResource InputViewStyle}">
+        <Setter Property="TextColor" Value="{DynamicResource entryTextColor}" />
+      </Style>
+      <Style TargetType="Entry" BasedOn="{StaticResource EntryStyle}">
+      </Style>
+
+      <Style x:Key="EditorStyle" TargetType="Editor" BasedOn="{StaticResource InputViewStyle}">
+        <Setter Property="TextColor" Value="{DynamicResource entryTextColor}" />
+      </Style>
+      <Style TargetType="Editor" BasedOn="{StaticResource EditorStyle}">
+      </Style>
+      
+      <!--<Style TargetType="DatePicker" BasedOn="{StaticResource InputViewStyle}">
+      </Style>
+      <Style TargetType="TimePicker" BasedOn="{StaticResource InputViewStyle}">
+      </Style>-->
+
+      <Style x:Key="ContentPageStyle" TargetType="ContentPage" BasedOn="{StaticResource visualStyle}">
+        <!--Add a bit of top padding for ios, otherwise it runs into the status bar at the top-->
+        <Setter Property="Padding">
+          <Setter.Value>
+            <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0"/>
+            <!--<OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Android="0, 20, 0, 0" WinPhone="0, 20, 0, 0" />-->
+          </Setter.Value>
+        </Setter>
+      </Style>
+
+      <Style x:Key="AwaitableContentPageStyle" TargetType="common:AwaitableContentPage" BasedOn="{StaticResource ContentPageStyle}">
+      </Style>
+
+
+            <!-- ++++++++++++++ Styles that are initialised to device styles-->
+      <Style x:Key="MyBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle">
+      </Style>
+
+      <Style x:Key="MyTitleStyle" TargetType="Label" BaseResourceKey="TitleStyle">
+      </Style>
+
+      <Style x:Key="MySubtitleStyle" TargetType="Label" BaseResourceKey="SubtitleStyle">
+      </Style>
+
+      <Style x:Key="MyCaptionStyle" TargetType="Label" BaseResourceKey="CaptionStyle">
+      </Style>
+
+      <Style x:Key="MyListItemTextStyle" TargetType="Label" BaseResourceKey="ListItemTextStyle">
+      </Style>
+
+      <Style x:Key="MyListItemDetailTextStyle" TargetType="Label" BaseResourceKey="ListItemDetailTextStyle">
+      </Style>
+
+      
+      <!-- ++++++++++++++ Other Styles-->
+
+      <Style x:Key="HeadingLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+      </Style>
+      <Style x:Key="ResultLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+      </Style>
+      <Style x:Key="ResultValueStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+        <Setter Property="Margin" Value="20,0,0,0" />
+      </Style>
+
+
+    </ResourceDictionary>
+  </Application.Resources>
+
+</Application>

@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="ParamTypeConflictReason is stored locally in ParamTypeConflictInfo and could be retrieved by a Cast if required">
+    <Position X="1.532" Y="13.165" Height="1" Width="1.648" />
+  </Comment>
+  <Comment CommentText="DoneImport is called after the table row has been imported, to allow any post-processing needed.  The ImportedRow instance then contains a row of data ready for adding to a ContentManager (subject to conflict checking and resolution)">
+    <Position X="8" Y="2.5" Height="1.528" Width="2.083" />
+  </Comment>
+  <Comment CommentText="AnyEquation ContentManager and content import">
+    <Position X="0.5" Y="0.524" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="where TableRow : ImportedRow, new()">
+    <Position X="12.115" Y="2.542" Height="0.365" Width="2.419" />
+  </Comment>
+  <Comment CommentText="where T_Type : IContent (e.g. ParamType) and TableRow is TblParamTypes_Row etc.">
+    <Position X="3.803" Y="11.977" Height="0.552" Width="2.492" />
+  </Comment>
+  <Class Name="AnyEquation.Equations.Model.ParamTypeConflictInfo">
+    <Position X="7.5" Y="12.5" Width="2.25" />
+    <Members>
+      <Method Name="ParamTypeConflictInfo" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="AnyEquation.Equations.Database.ConflictInfo&lt;TableRow&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="8.625" Y="11.93" />
+        <Point X="8.625" Y="12.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\ParamType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.ParamTypeConflictSet">
+    <Position X="0.5" Y="10.25" Width="2.75" />
+    <Members>
+      <Method Name="ParamTypeConflictSet" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\ParamType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Database.ConflictInfo&lt;TableRow&gt;">
+    <Position X="7.75" Y="10.25" Width="2" />
+    <Members>
+      <Method Name="ConflictInfo" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ConflictType" Type="AnyEquation.Equations.Database.ConflictType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.415" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAEAAAAAAAAAAAQAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Equations\Database\Conflict.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ConflictType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Database.ConflictSet&lt;T_Type, TableRow&gt;">
+    <Position X="3.75" Y="10.25" Width="2.5" />
+    <Members>
+      <Field Name="_conflictingItems" Hidden="true" />
+      <Method Name="ConflictSet" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAAAAAAAwAAAA=</HashCode>
+      <FileName>Equations\Database\Conflict.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ConflictingItems" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AnyEquation.Equations.Database.ImportedRow">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\Database\ImportedRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Database.SqLiteContentTable&lt;TableRow&gt;">
+    <Position X="10.75" Y="1.25" Width="2.75" />
+    <Members>
+      <Field Name="locker" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="AnyEquation.Equations.Database.SqLiteContentTable&lt;TableRow&gt;.TblInfo_Row">
+        <TypeIdentifier>
+          <NewMemberFileName>Equations\Database\SqLiteContentDatabase.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Equations\Database\SqLiteContentDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Database.TblParamTypes_Row">
+    <Position X="6.25" Y="3.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="AnyEquation.Equations.Database.ImportedRow" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="3.296" />
+        <Point X="7.25" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAABAlAEABAgAAAABAEAAgYAAAgAgIAYgAgAAAAAAAA=</HashCode>
+      <FileName>Equations\Database\TblParamTypes_Row.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnyEquation.Equations.Model.ContentManager">
+    <Position X="2.75" Y="0.5" Width="3" />
+    <Members>
+      <Field Name="_Constants" Hidden="true" />
+      <Field Name="_defaultUOMSet" Hidden="true" />
+      <Field Name="_functions" Hidden="true" />
+      <Field Name="_gContentManager" Hidden="true" />
+      <Field Name="_jongParser" Hidden="true" />
+      <Field Name="_knownUOMs" Hidden="true" />
+      <Field Name="_paramTypeConflictSets" Hidden="true" />
+      <Field Name="_ParamTypes" Hidden="true" />
+      <Field Name="_UOMSets" Hidden="true" />
+      <Method Name="AddConstant" Hidden="true" />
+      <Method Name="AddCoreConstants" Hidden="true" />
+      <Method Name="AddCoreContent" Hidden="true" />
+      <Method Name="AddCoreFunctions" Hidden="true" />
+      <Method Name="AddCoreKnownUOMs" Hidden="true" />
+      <Method Name="AddCoreParamTypes" Hidden="true" />
+      <Method Name="AddCoreUOMSets" Hidden="true" />
+      <Method Name="AddDatabaseItems" Hidden="true" />
+      <Method Name="AddKnownUOM" Hidden="true" />
+      <Method Name="AddParamType" Hidden="true" />
+      <Method Name="ContentManager" Hidden="true" />
+      <Method Name="CreateTerm_From_JongFunction" Hidden="true" />
+      <Method Name="FindFunction" Hidden="true" />
+      <Method Name="LoadAllContent" Hidden="true" />
+      <Method Name="ReadDataBases" Hidden="true" />
+      <Field Name="STR_British" Hidden="true" />
+      <Field Name="STR_SI" Hidden="true" />
+      <Method Name="ThrowIfNotContentLoaded" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AnyEquation.Equations.Model.ContentManager.Popularities">
+        <TypeIdentifier>
+          <NewMemberFileName>Equations\Model\ContentManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ECAAECgwACAEEARABAQCCAMARJhgIwgTDiACYQUAAEQ=</HashCode>
+      <FileName>Equations\Model\ContentManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="AnyEquation.Equations.EquationParser.ICheckModelName">
+    <Position X="0.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equations\EquationParser\ICheckModelName.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="AnyEquation.Equations.Model.ParamTypeConflictReason">
+    <Position X="0.5" Y="12.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAIAAAAAIAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Equations\Model\Calculations\ParamType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AnyEquation.Equations.Database.ConflictType">
+    <Position X="11.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAIAAAAAAIAAEAAAA=</HashCode>
+      <FileName>Equations\Database\Conflict.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

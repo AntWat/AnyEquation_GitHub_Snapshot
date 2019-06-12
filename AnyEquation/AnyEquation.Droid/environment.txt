@@ -1,0 +1,5 @@
+﻿# Set the MONO_LOG_LEVEL environment variable to reduce the clutter on the Visual Studio output window
+MONO_LOG_LEVEL=error
+
+# Clear out a Mono environment variable to decrease logging
+# MONO_LOG_LEVEL=

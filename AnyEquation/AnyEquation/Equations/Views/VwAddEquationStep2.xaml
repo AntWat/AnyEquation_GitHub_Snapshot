@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<common:AwaitableContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             xmlns:eqnvw="clr-namespace:AnyEquation.Equations.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="AnyEquation.Equations.Views.VwAddEquationStep2"
+             Title="Define Variables"
+             Style="{DynamicResource AwaitableContentPageStyle}"
+             >
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <eqnvw:SfGridStyle x:Key="sfGridStyle" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <!--+++++++++++++++ Equation ++++++++ -->
+
+  <Grid VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+               AbsoluteLayout.LayoutFlags="All" RowSpacing="0"
+               BackgroundColor="{DynamicResource mainBackgroundColor}"
+               Padding="5">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+    </Grid.RowDefinitions>
+
+    <eqnuc:ucMathDisplay Grid.Row="0" MathExpression="{Binding EquationCalc}"
+                         AllowHorizonatalScroll="True" EmptyText="{Binding EquationMsg}"
+                         VerticalOptions="Center" Padding="10,5,5,5"></eqnuc:ucMathDisplay>
+
+    <StackLayout Grid.Row="1" Padding="5">
+      <common:ImprovedEntry x:Name="txtDescribe" Keyboard="Default" HorizontalOptions="FillAndExpand"
+                             Text="{Binding EqDescription}"
+                             HorizontalTextAlignment="Start"
+                             VerticalOptions="Center"
+                             Placeholder="Describe the Equation (optional)"
+                             PlaceholderTextColor="{DynamicResource backgroundTextBlend25PcColor}"
+                             TextColor="{DynamicResource contrastColor}"
+                           ></common:ImprovedEntry>
+    </StackLayout>
+
+    <!--+++++++++++++++ ErrorMessage ++++++++ -->
+    <ContentView Padding="5" Margin="10" Grid.Row="2" >
+      <ContentView.Triggers>
+        <DataTrigger TargetType="ContentView" Binding="{Binding ParamTypeMsgExists}" Value="true">
+          <Setter Property="BackgroundColor" Value="{DynamicResource textColor}" />
+        </DataTrigger>
+      </ContentView.Triggers>
+      <Label Text="{Binding ParamTypeMsg}" FontSize="Default" HorizontalTextAlignment="Start" VerticalTextAlignment="Center">
+        <Label.Triggers>
+          <DataTrigger TargetType="Label" Binding="{Binding ParamTypeMsgExists}" Value="true">
+            <Setter Property="TextColor" Value="{DynamicResource mainBackgroundColor}" />
+          </DataTrigger>
+        </Label.Triggers>
+      </Label>
+    </ContentView>
+
+    <!--+++++++++++++++ Variables ++++++++ -->
+
+    <syncfusion:SfDataGrid Grid.Row="3" x:Name="variablesGrid"
+                GridStyle="{StaticResource sfGridStyle}"
+                AutoGenerateColumns="False"
+                AllowSorting="False"
+                ItemsSource="{Binding EqCalcVarInfos}"
+                FrozenRowsCount ="1" FrozenColumnsCount="1"
+                EditTapAction="OnTap"
+                                    >
+      <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+        <syncfusion:GridTextColumn HeaderText="Var" MappingName="Name"
+                            ColumnSizer = "Auto">
+        </syncfusion:GridTextColumn>
+
+        <syncfusion:GridTemplateColumn HeaderText="ParamType" MappingName="ParamSymbol"
+                            ColumnSizer = "Auto">
+          <syncfusion:GridTemplateColumn.CellTemplate >
+            <DataTemplate >
+              <ContentView Padding="1">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                  <common:LcButton Text="{Binding ParamSymbol}"
+                              Opacity="0.5" FontSize="Small"
+                              BackgroundColor="{DynamicResource textColor}"
+                              TextColor="{DynamicResource mainBackgroundColor}"
+                              BorderColor="{DynamicResource mainBackgroundColor}"
+                              BorderWidth="6" BorderRadius="12"
+                              Command="{Binding ChooseParamType}"
+                                                    >
+                  </common:LcButton>
+                </StackLayout>
+              </ContentView>
+            </DataTemplate>
+          </syncfusion:GridTemplateColumn.CellTemplate>
+        </syncfusion:GridTemplateColumn>
+
+
+
+        <syncfusion:GridTextColumn HeaderText=" Description" MappingName="Description" AllowEditing="True"
+                            Width = "1000" HeaderTextAlignment="Start" TextAlignment="Start">
+        </syncfusion:GridTextColumn>
+      </syncfusion:SfDataGrid.Columns>
+    </syncfusion:SfDataGrid>
+
+    <Grid Grid.Row="4" VerticalOptions="Center" RowSpacing="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="Auto"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <common:LcButton Grid.Column="0" x:Name="btnBack" Text="&lt;Back" Clicked="btnBack_Clicked"
+                       FontSize="Small"  HeightRequest="40"
+                       BackgroundColor="{DynamicResource mainBackgroundColor}" TextColor="{DynamicResource contrastColor}"
+                       ></common:LcButton>
+      <Label Grid.Column="1" FontSize="Small" HeightRequest="40" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">Describe Equation (optional)</Label>
+      <common:LcButton Grid.Column="2"  Text="Next&gt;"  Clicked="btnNext_Clicked"
+                       FontSize="Small"  HeightRequest="40"
+                       BackgroundColor="{DynamicResource mainBackgroundColor}" TextColor="{DynamicResource contrastColor}"
+                       ></common:LcButton>
+    </Grid>
+  </Grid>
+
+</common:AwaitableContentPage>

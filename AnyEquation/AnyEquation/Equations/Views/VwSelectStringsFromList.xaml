@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<common:AwaitableContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:AnyEquation.Common"
+            Title="Select an item"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Class="AnyEquation.Equations.Views.VwSelectStringsFromList">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:Key="col2Width"
+                  x:TypeArguments="GridLength"
+                  iOS="90"
+                  Android="60"
+                  WinPhone="115" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding DisplayTitle}" FontSize="Large" ></Label>
+            <StackLayout Orientation="Horizontal">
+                <common:LcButton x:Name="btnOK" Clicked="OK_Clicked" Text="OK"></common:LcButton>
+                <common:LcButton x:Name="btnCancel" Clicked="Cancel_Clicked" Text="Cancel"></common:LcButton>
+            </StackLayout>
+            <Label Text="{Binding DisplaySubTitle}"></Label>
+            <ListView x:Name="lstItems" VerticalOptions="FillAndExpand"
+                                           ItemsSource="{Binding Path=ItemsToShow}" 
+                                           HasUnevenRows ="False" 
+                                           Margin="10"
+                  SelectedItem="{Binding NullSelectedItem, Mode=TwoWay}"
+                                           >
+                <!--We never want an item selected-->
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="{StaticResource col2Width}"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="{Binding TextToDisplay}"></Label>
+
+                                    <ContentView  Grid.Column="1" >
+                                        <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" ></Switch>
+                                    </ContentView>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</common:AwaitableContentPage>

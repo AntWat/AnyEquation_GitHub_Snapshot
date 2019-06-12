@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Select an item"
+             Style="{DynamicResource ContentPageStyle}"
+             x:Class="AnyEquation.Equations.Views.VwSelectStringFromList">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding DisplayTitle}" FontSize="Large" ></Label>
+            <Label Text="{Binding DisplaySubTitle}"></Label>
+            <ListView VerticalOptions="FillAndExpand"
+                                           ItemsSource="{Binding Path=ItemsToShow}" 
+                                           SelectedItem="{Binding Path=SelectedItem}"
+                                           HasUnevenRows ="True" 
+                                           Margin="10"
+                                           >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Margin="5">
+                                    <Label Text="{Binding}"></Label>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

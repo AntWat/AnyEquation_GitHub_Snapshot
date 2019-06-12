@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:eqnmdl="clr-namespace:AnyEquation.Equations.Model"
+             xmlns:eqnuc="clr-namespace:AnyEquation.Equations.User_Controls"
+             x:Class="AnyEquation.Equations.User_Controls.ucMathDisplay"
+             >
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="eqLblStyle" TargetType="Label" BasedOn="{StaticResource lblStyle}">
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style TargetType="eqnuc:ResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:FuncNameResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:OpenBracketResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:CloseBracketResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:ValueResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:OpResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:EqualsResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:PowerResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+            <Style TargetType="eqnuc:CommaResultLabel" BasedOn="{StaticResource eqLblStyle}"></Style>
+
+            <Style TargetType="eqnuc:ConstantResultLabel" BasedOn="{StaticResource eqLblStyle}">
+                <Setter Property="TextColor" Value="{DynamicResource backgroundTextBlend50PcColor}" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content InputTransparent = "true">
+        <StackLayout Orientation="Horizontal" x:Name="topContainer">
+            <Label x:Name="txtDefaultText" Text="No Equation"></Label>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

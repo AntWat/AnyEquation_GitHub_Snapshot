@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AnyEquation.Equations.User_Controls.ucNumericInput">
+    <ContentView.Content>
+        <Grid x:Name="topContainer" HorizontalOptions="FillAndExpand" Margin="0" VerticalOptions="Center">
+            <!--TODO: Equations: Padding needs to be passsed in-->
+            <Entry Grid.Column="0" x:Name="numEntry" Keyboard="Numeric" IsVisible="True" HorizontalOptions="FillAndExpand"
+             TextChanged="OnEntryTextChanged" HorizontalTextAlignment="Center"
+             VerticalOptions="CenterAndExpand"
+             FontSize="Small"
+             ></Entry>
+            <Label Grid.Column="0" x:Name="lblText" IsVisible="False" HorizontalOptions="FillAndExpand" 
+             HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"
+             FontSize="Small"></Label>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
